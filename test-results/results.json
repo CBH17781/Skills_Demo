@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 4
+      "actualWorkers": 6
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 6
         },
         "id": "chromium",
         "name": "chromium",
@@ -59,7 +59,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 6
         },
         "id": "firefox",
         "name": "firefox",
@@ -75,7 +75,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 6
         },
         "id": "webkit",
         "name": "webkit",
@@ -91,7 +91,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 6
         },
         "id": "mobile-chrome",
         "name": "mobile-chrome",
@@ -107,7 +107,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 6
         },
         "id": "mobile-safari",
         "name": "mobile-safari",
@@ -128,23 +128,23 @@
   },
   "suites": [
     {
-      "title": "webNavigation.spec.js",
-      "file": "webNavigation.spec.js",
+      "title": "security.spec.js",
+      "file": "security.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "LI.FI Website Navigation Tests @e2e",
-          "file": "webNavigation.spec.js",
-          "line": 3,
+          "title": "Security Tests @security",
+          "file": "security.spec.js",
+          "line": 8,
           "column": 6,
           "specs": [
             {
-              "title": "should navigate to homepage and verify core elements @smoke",
+              "title": "should have proper HTTPS configuration @smoke",
               "ok": true,
               "tags": [
-                "e2e",
+                "security",
                 "smoke"
               ],
               "tests": [
@@ -156,15 +156,19 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 136,
+                      "workerIndex": 140,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2877,
+                      "duration": 4176,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "Site is served over HTTPS: https://li.fi/\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-17T08:06:46.580Z",
+                      "startTime": "2025-08-17T08:26:04.968Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -172,16 +176,16 @@
                   "status": "expected"
                 }
               ],
-              "id": "105e10e7ca63a8d22bd2-27d2e08c1d31bd15d4ae",
-              "file": "webNavigation.spec.js",
-              "line": 10,
+              "id": "3efa7971ab9a8dd627a5-b9e785a804553ee46c40",
+              "file": "security.spec.js",
+              "line": 14,
               "column": 7
             },
             {
-              "title": "should navigate through main menu items",
+              "title": "should have security headers",
               "ok": true,
               "tags": [
-                "e2e"
+                "security"
               ],
               "tests": [
                 {
@@ -192,15 +196,31 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 137,
+                      "workerIndex": 141,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 8450,
+                      "duration": 4094,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Found x-frame-options: SAMEORIGIN\n"
+                        },
+                        {
+                          "text": "✓ Found x-content-type-options: nosniff\n"
+                        },
+                        {
+                          "text": "✓ Found x-xss-protection: 1; mode=block\n"
+                        },
+                        {
+                          "text": "✓ Found strict-transport-security: max-age=31536000; includeSubDomains; preload\n"
+                        },
+                        {
+                          "text": "⚠ Missing content-security-policy: Should prevent XSS and injection attacks\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-17T08:06:46.565Z",
+                      "startTime": "2025-08-17T08:26:04.988Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -208,16 +228,16 @@
                   "status": "expected"
                 }
               ],
-              "id": "105e10e7ca63a8d22bd2-9b2637e02d5036e483c0",
-              "file": "webNavigation.spec.js",
-              "line": 30,
+              "id": "3efa7971ab9a8dd627a5-cfc7f4a9627e02a21514",
+              "file": "security.spec.js",
+              "line": 21,
               "column": 7
             },
             {
-              "title": "should handle responsive navigation on mobile",
+              "title": "should prevent XSS in input fields",
               "ok": true,
               "tags": [
-                "e2e"
+                "security"
               ],
               "tests": [
                 {
@@ -228,15 +248,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 138,
+                      "workerIndex": 142,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 3057,
+                      "duration": 4116,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-17T08:06:46.564Z",
+                      "startTime": "2025-08-17T08:26:04.995Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -244,16 +264,16 @@
                   "status": "expected"
                 }
               ],
-              "id": "105e10e7ca63a8d22bd2-ec602316bc275d4b7c94",
-              "file": "webNavigation.spec.js",
-              "line": 45,
+              "id": "3efa7971ab9a8dd627a5-1220ff1c2c2744086047",
+              "file": "security.spec.js",
+              "line": 49,
               "column": 7
             },
             {
-              "title": "should verify footer links and information",
+              "title": "should validate SSL certificate",
               "ok": true,
               "tags": [
-                "e2e"
+                "security"
               ],
               "tests": [
                 {
@@ -264,15 +284,19 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 139,
+                      "workerIndex": 143,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3131,
+                      "duration": 4119,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "SSL certificate validation passed\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-17T08:06:46.565Z",
+                      "startTime": "2025-08-17T08:26:05.018Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -280,9 +304,296 @@
                   "status": "expected"
                 }
               ],
-              "id": "105e10e7ca63a8d22bd2-264c547e2f8aa5f0804b",
-              "file": "webNavigation.spec.js",
-              "line": 59,
+              "id": "3efa7971ab9a8dd627a5-5e291141afaafc912acc",
+              "file": "security.spec.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should not expose sensitive information in client-side code",
+              "ok": true,
+              "tags": [
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 144,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4107,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "⚠ Potential sensitive data found: token-standard/\"><span class=\"footer-road-map-styl...\n"
+                        },
+                        {
+                          "text": "Completed sensitive information scan\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-17T08:26:05.003Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3efa7971ab9a8dd627a5-98b89997d8cb4159ed70",
+              "file": "security.spec.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should handle CORS properly",
+              "ok": true,
+              "tags": [
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 145,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 4271,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-17T08:26:05.014Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3efa7971ab9a8dd627a5-aec5ef95c67d3dbca754",
+              "file": "security.spec.js",
+              "line": 116,
+              "column": 7
+            },
+            {
+              "title": "should validate form input sanitization",
+              "ok": true,
+              "tags": [
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 141,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2786,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-17T08:26:09.219Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3efa7971ab9a8dd627a5-cd48c8fcb395d0fd818f",
+              "file": "security.spec.js",
+              "line": 136,
+              "column": 7
+            },
+            {
+              "title": "should check for mixed content issues",
+              "ok": false,
+              "tags": [
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 142,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 30142,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\tests\\security.spec.js",
+                            "column": 16,
+                            "line": 186
+                          },
+                          "message": "Error: page.waitForLoadState: Test timeout of 30000ms exceeded.\n=========================== logs ===========================\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n============================================================\n\n\u001b[0m \u001b[90m 184 |\u001b[39m     \u001b[90m// Navigate and wait for any console messages\u001b[39m\n \u001b[90m 185 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 186 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 187 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 188 |\u001b[39m     \n \u001b[90m 189 |\u001b[39m     \u001b[90m// Should not have mixed content warnings\u001b[39m\u001b[0m\n\u001b[2m    at H:\\My documents Folder\\CV\\2025\\Skills_Demo\\tests\\security.spec.js:186:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-17T08:26:09.220Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\test-results\\security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\test-results\\security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\test-results\\security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3efa7971ab9a8dd627a5-90de128d704e3f042096",
+              "file": "security.spec.js",
+              "line": 175,
+              "column": 7
+            },
+            {
+              "title": "should validate wallet connection security",
+              "ok": true,
+              "tags": [
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 144,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2644,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-17T08:26:09.255Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3efa7971ab9a8dd627a5-7d2bcf3a9a5977c1735e",
+              "file": "security.spec.js",
+              "line": 199,
+              "column": 7
+            },
+            {
+              "title": "should check for secure cookie configuration",
+              "ok": false,
+              "tags": [
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 140,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 30146,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\tests\\security.spec.js",
+                            "column": 16,
+                            "line": 237
+                          },
+                          "message": "Error: page.waitForLoadState: Test timeout of 30000ms exceeded.\n=========================== logs ===========================\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n  \"commit\" event fired\n  \"domcontentloaded\" event fired\n  \"load\" event fired\n============================================================\n\n\u001b[0m \u001b[90m 235 |\u001b[39m     \u001b[90m// Navigate to trigger any cookie setting\u001b[39m\n \u001b[90m 236 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 237 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 238 |\u001b[39m     \n \u001b[90m 239 |\u001b[39m     \u001b[90m// Get cookies\u001b[39m\n \u001b[90m 240 |\u001b[39m     \u001b[36mconst\u001b[39m cookies \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mcookies()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at H:\\My documents Folder\\CV\\2025\\Skills_Demo\\tests\\security.spec.js:237:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-17T08:26:09.260Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\test-results\\security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\test-results\\security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "H:\\My documents Folder\\CV\\2025\\Skills_Demo\\test-results\\security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3efa7971ab9a8dd627a5-e917024154948572fcf2",
+              "file": "security.spec.js",
+              "line": 234,
               "column": 7
             }
           ]
@@ -292,11 +603,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-17T08:06:44.463Z",
-    "duration": 10691.10599999968,
-    "expected": 4,
+    "startTime": "2025-08-17T08:26:02.689Z",
+    "duration": 36777.65700000012,
+    "expected": 8,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 2,
     "flaky": 0
   }
 }

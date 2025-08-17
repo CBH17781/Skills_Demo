@@ -1,12 +1,139 @@
-<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="10.69110599999968">
-<testsuite name="webNavigation.spec.js" timestamp="2025-08-17T08:06:45.465Z" hostname="chromium" tests="4" failures="0" skipped="0" time="17.515" errors="0">
-<testcase name="LI.FI Website Navigation Tests @e2e › should navigate to homepage and verify core elements @smoke" classname="webNavigation.spec.js" time="2.877">
+<testsuites id="" name="" tests="10" failures="2" skipped="0" errors="0" time="36.777657000000126">
+<testsuite name="security.spec.js" timestamp="2025-08-17T08:26:03.735Z" hostname="chromium" tests="10" failures="2" skipped="0" time="90.601" errors="0">
+<testcase name="Security Tests @security › should have proper HTTPS configuration @smoke" classname="security.spec.js" time="4.176">
+<system-out>
+<![CDATA[Site is served over HTTPS: https://li.fi/
+]]>
+</system-out>
 </testcase>
-<testcase name="LI.FI Website Navigation Tests @e2e › should navigate through main menu items" classname="webNavigation.spec.js" time="8.45">
+<testcase name="Security Tests @security › should have security headers" classname="security.spec.js" time="4.094">
+<system-out>
+<![CDATA[✓ Found x-frame-options: SAMEORIGIN
+✓ Found x-content-type-options: nosniff
+✓ Found x-xss-protection: 1; mode=block
+✓ Found strict-transport-security: max-age=31536000; includeSubDomains; preload
+⚠ Missing content-security-policy: Should prevent XSS and injection attacks
+]]>
+</system-out>
 </testcase>
-<testcase name="LI.FI Website Navigation Tests @e2e › should handle responsive navigation on mobile" classname="webNavigation.spec.js" time="3.057">
+<testcase name="Security Tests @security › should prevent XSS in input fields" classname="security.spec.js" time="4.116">
 </testcase>
-<testcase name="LI.FI Website Navigation Tests @e2e › should verify footer links and information" classname="webNavigation.spec.js" time="3.131">
+<testcase name="Security Tests @security › should validate SSL certificate" classname="security.spec.js" time="4.119">
+<system-out>
+<![CDATA[SSL certificate validation passed
+]]>
+</system-out>
+</testcase>
+<testcase name="Security Tests @security › should not expose sensitive information in client-side code" classname="security.spec.js" time="4.107">
+<system-out>
+<![CDATA[⚠ Potential sensitive data found: token-standard/"><span class="footer-road-map-styl...
+Completed sensitive information scan
+]]>
+</system-out>
+</testcase>
+<testcase name="Security Tests @security › should handle CORS properly" classname="security.spec.js" time="4.271">
+</testcase>
+<testcase name="Security Tests @security › should validate form input sanitization" classname="security.spec.js" time="2.786">
+</testcase>
+<testcase name="Security Tests @security › should check for mixed content issues" classname="security.spec.js" time="30.142">
+<failure message="security.spec.js:175:7 should check for mixed content issues" type="FAILURE">
+<![CDATA[  [chromium] › security.spec.js:175:7 › Security Tests @security › should check for mixed content issues 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForLoadState: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+      "commit" event fired
+      "domcontentloaded" event fired
+      "load" event fired
+      "commit" event fired
+      "domcontentloaded" event fired
+      "load" event fired
+      "commit" event fired
+      "domcontentloaded" event fired
+      "load" event fired
+    ============================================================
+
+      184 |     // Navigate and wait for any console messages
+      185 |     await page.goto('/');
+    > 186 |     await page.waitForLoadState('networkidle');
+          |                ^
+      187 |     await page.waitForTimeout(2000);
+      188 |     
+      189 |     // Should not have mixed content warnings
+        at H:\My documents Folder\CV\2025\Skills_Demo\tests\security.spec.js:186:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\video.webm]]
+
+[[ATTACHMENT|security-Security-Tests-se-d2fe3-ck-for-mixed-content-issues-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Security Tests @security › should validate wallet connection security" classname="security.spec.js" time="2.644">
+</testcase>
+<testcase name="Security Tests @security › should check for secure cookie configuration" classname="security.spec.js" time="30.146">
+<failure message="security.spec.js:234:7 should check for secure cookie configuration" type="FAILURE">
+<![CDATA[  [chromium] › security.spec.js:234:7 › Security Tests @security › should check for secure cookie configuration 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForLoadState: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+      "commit" event fired
+      "domcontentloaded" event fired
+      "load" event fired
+      "commit" event fired
+      "domcontentloaded" event fired
+      "load" event fired
+      "commit" event fired
+      "domcontentloaded" event fired
+      "load" event fired
+    ============================================================
+
+      235 |     // Navigate to trigger any cookie setting
+      236 |     await page.goto('/');
+    > 237 |     await page.waitForLoadState('networkidle');
+          |                ^
+      238 |     
+      239 |     // Get cookies
+      240 |     const cookies = await context.cookies();
+        at H:\My documents Folder\CV\2025\Skills_Demo\tests\security.spec.js:237:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\video.webm]]
+
+[[ATTACHMENT|security-Security-Tests-se-2708a-secure-cookie-configuration-chromium\error-context.md]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>
