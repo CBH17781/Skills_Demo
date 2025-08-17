@@ -1,0 +1,184 @@
+# Page snapshot
+
+```yaml
+- link:
+  - /url: /
+  - img
+- text: Developers
+- img
+- text: Products
+- img
+- text: Use cases
+- img
+- link "Resources":
+  - /url: /knowledge-hub/
+- link "Plans":
+  - /url: /plans/
+- link "Sign in to Partner Portal":
+  - /url: https://portal.li.fi/
+- heading "Compare best prices across all DeFi liquidity" [level=1]
+- heading "Get the best price execution for any swaps and bridging across EVM chains, Solana, Bitcoin and alt-VMs. Enable trading across all DEX aggregators, bridges, and intent-systems and save hundreds of developer hours." [level=2]
+- link "Start your integration":
+  - /url: /plans/
+- link "Contact sales":
+  - /url: /contact-us/
+- img
+- region:
+  - group "1 of 11":
+    - link:
+      - /url: https://robinhood.com/web3-wallet/
+      - img
+  - group "2 of 11":
+    - link:
+      - /url: https://metamask.io
+      - img
+  - group "3 of 11":
+    - link:
+      - /url: https://www.binance.com/en/web3wallet
+      - img
+- text: //by_the_numbers 550+ partners trust LI.FI Go to market faster. No integration and maintenance overhead. Benefit from risk mitigation, fail safety and neatless interoperability by a vast amount of underlying protocols (e.g. DEX aggregators & bridges), which LI.FI aggregates. $30B+ Total Transfer Volume 50M+ Total Transfers //any_chain
+- heading "Swap & bridge liquidity across 30+ chains" [level=2]
+- img
+- text: Ethereum
+- img
+- text: Solana
+- img
+- text: Arbitrum
+- img
+- text: Bnb
+- img
+- text: Linea
+- img
+- text: Polygon
+- img
+- text: Bitcoin
+- img
+- text: Optimism
+- img
+- text: Avalanche
+- img
+- text: ZkSync
+- img
+- text: Metis
+- img
+- text: Base //for_developers
+- heading "Build smarter with a single API solution" [level=1]
+- paragraph: Simplify your crypto journey with one powerful API. Seamlessly access all liquidity sources, optimize trade execution across chains and assets, and leverage a suite of value-added services — including real-time data monitoring and enterprise-grade support.
+- img
+- link "Trading widget Enable trading on your app in less than 5 minutes. →":
+  - /url: https://docs.li.fi/widget/overview
+  - img
+  - heading "Trading widget" [level=3]
+  - paragraph: Enable trading on your app in less than 5 minutes.
+  - text: →
+- link "SDK documentation Take full control of your user journey. →":
+  - /url: https://docs.li.fi/sdk/overview
+  - img
+  - heading "SDK documentation" [level=3]
+  - paragraph: Take full control of your user journey.
+  - text: →
+- link "API reference Access the full suite of features and services. →":
+  - /url: https://docs.li.fi/api-reference/introduction
+  - img
+  - heading "API reference" [level=3]
+  - paragraph: Access the full suite of features and services.
+  - text: →
+- heading "Complete enterprise solution beyond just an API" [level=2]
+- text: LI.FI connects you to every major DEX aggregators, bridges, and intent-systems, tapping liquidity from Uniswap, 1inch, Stargate, Across, and more — across all major chains, all through a single integration.
+- link "Contact sales":
+  - /url: /contact-us/
+- text: //for_enterprise
+- heading "Why enterprises trust LI.FI" [level=1]
+- img
+- heading "Premium support & services" [level=3]
+- paragraph: Get personalized support with a dedicated account manager, enterprise-level SLAs, and rapid response to accelerate your go-to-market.
+- img
+- heading "Scalability & performance guarantee" [level=3]
+- paragraph: Cloud-native platform delivers peak performance and responsiveness with modular architecture and advanced caching.
+- img
+- heading "Constant product releases" [level=3]
+- paragraph: Future-proof your product roadmap with never-ending access to all the new DEXs, solvers, bridges, and blockchain ecosystems.
+- img
+- heading "Cohesive data & analytics" [level=3]
+- paragraph: LI.FI’s analytics offer insights into user activity, trends, and fees, enabling data-driven decisions to optimize performance and drive growth.
+- text: //partners
+- button:
+  - img
+- text: SELF-CUSTODY WALLET
+- img
+- paragraph: “Fast, efficient, and collaborative—LI.FI was a key enabler in upgrading our swap experience.”
+- paragraph: Arnaud Lepraux
+- paragraph: Senior Business Manager
+- button:
+  - img
+- button
+- button
+- button
+- button
+- img
+- link "Privacy":
+  - /url: /legal/privacy-policy/
+- link "Terms & conditions":
+  - /url: /legal/terms-and-conditions/
+- link "Imprint":
+  - /url: /legal/imprint/
+- text: LI.FI © 2025. All right reserved.
+- link:
+  - /url: https://blog.li.fi/?utm_source=lifi&utm_medium=footer_socials&utm_campaign=lifi_to_blog
+  - img
+- link:
+  - /url: https://github.com/lifinance/
+  - img
+- link:
+  - /url: https://discord.gg/jumperexchange
+  - img
+- link:
+  - /url: https://x.com/lifiprotocol
+  - img
+- link:
+  - /url: https://t.me/lifinews
+  - img
+- text: Products
+- link "API/SDK":
+  - /url: /api-sdk/
+- link "Widget":
+  - /url: /widget/
+- link "Glacis":
+  - /url: /interop-token-standard/
+- text: Docs
+- link "API":
+  - /url: https://docs.li.fi/api-reference/introduction/?utm_source=lifi&utm_medium=footer_getting_started&utm_campaign=lifi_to_docs
+- link "SDK":
+  - /url: https://docs.li.fi/sdk/overview/?utm_source=lifi&utm_medium=footer_getting_started&utm_campaign=lifi_to_docs
+- link "Widget":
+  - /url: https://docs.li.fi/widget/overview/?utm_source=lifi&utm_medium=footer_getting_started&utm_campaign=lifi_to_docs
+- text: Tools
+- link "LI.FI Scan":
+  - /url: https://explorer.li.fi/?utm_source=lifi&utm_medium=footer_link_tools&utm_campaign=lifi_to_explorer
+- link "LI.FI Partner Portal":
+  - /url: https://portal.li.fi/
+- text: Company
+- link "About":
+  - /url: /about-us/
+- link "Careers":
+  - /url: https://jobs.ashbyhq.com/li.fi
+- link "Brand guidelines":
+  - /url: /brand-guidelines/
+- text: Resources
+- link "Knowledge hub":
+  - /url: /knowledge-hub/
+- link "How it works":
+  - /url: /how-it-works/
+- text: Support
+- link "Contact support":
+  - /url: /contact-us/
+- link "Developer support":
+  - /url: https://help.li.fi/hc/en-us/requests/new
+- link "FAQ":
+  - /url: https://docs.li.fi/guides/integration-tips/faq/?utm_source=lifi&utm_medium=footer_link_support&utm_campaign=lifi_to_docs
+- link "Status":
+  - /url: https://status.li.fi/?utm_source=lifi&utm_medium=footer_link_support&utm_campaign=lifi_to_status
+- link "Changelog":
+  - /url: https://github.com/lifinance/sdk/blob/main/CHANGELOG.md
+- alert
+```

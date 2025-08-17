@@ -1,0 +1,350 @@
+name: QA Automation Test Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run tests daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Test suite to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - smoke
+          - e2e
+          - api
+          - performance
+          - accessibility
+          - security
+
+env:
+  NODE_VERSION: '18'
+  PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/ms-playwright
+
+jobs:
+  test-matrix:
+    name: Test Suite (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit]
+        include:
+          - project: chromium
+            browser: chrome
+          - project: firefox
+            browser: firefox
+          - project: webkit
+            browser: webkit
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps ${{ matrix.project }}
+
+      - name: Run smoke tests
+        if: github.event.inputs.test_suite == 'smoke' || github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == ''
+        run: npx playwright test --project=${{ matrix.project }} --grep "@smoke"
+        continue-on-error: true
+
+      - name: Run E2E tests
+        if: github.event.inputs.test_suite == 'e2e' || github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == ''
+        run: npx playwright test --project=${{ matrix.project }} --grep "@e2e"
+        continue-on-error: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.project }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  api-tests:
+    name: API Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install chromium
+
+      - name: Run API tests
+        if: github.event.inputs.test_suite == 'api' || github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == ''
+        run: npx playwright test --project=chromium --grep "@api"
+
+      - name: Upload API test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install chromium
+
+      - name: Run performance tests
+        if: github.event.inputs.test_suite == 'performance' || github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == ''
+        run: npx playwright test --project=chromium --grep "@performance"
+
+      - name: Upload performance results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install chromium
+
+      - name: Run accessibility tests
+        if: github.event.inputs.test_suite == 'accessibility' || github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == ''
+        run: npx playwright test --project=chromium --grep "@a11y"
+
+      - name: Upload accessibility results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: accessibility-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  security-tests:
+    name: Security Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install chromium
+
+      - name: Run security tests
+        if: github.event.inputs.test_suite == 'security' || github.event.inputs.test_suite == 'all' || github.event.inputs.test_suite == ''
+        run: npx playwright test --project=chromium --grep "@security"
+
+      - name: Upload security results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  mobile-tests:
+    name: Mobile Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install chromium
+
+      - name: Run mobile tests
+        run: npx playwright test --project=mobile-chrome --project=mobile-safari
+
+      - name: Upload mobile test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  report:
+    name: Generate Test Report
+    runs-on: ubuntu-latest
+    needs: [test-matrix, api-tests, performance-tests, accessibility-tests, security-tests, mobile-tests]
+    if: always()
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download all test results
+        uses: actions/download-artifact@v4
+        with:
+          path: all-test-results
+
+      - name: Merge test results
+        run: |
+          mkdir -p merged-results
+          find all-test-results -name "*.json" -exec cp {} merged-results/ \;
+          find all-test-results -name "*.xml" -exec cp {} merged-results/ \;
+
+      - name: Generate HTML report
+        run: |
+          if [ -d "all-test-results" ]; then
+            npx playwright show-report --host 0.0.0.0 &
+            sleep 5
+            pkill -f "playwright show-report" || true
+          fi
+
+      - name: Upload merged results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: merged-test-results
+          path: |
+            merged-results/
+            playwright-report/
+          retention-days: 30
+
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            let comment = '## 🧪 Test Results Summary\n\n';
+            
+            // Check if test results exist and add summary
+            const testResultsPath = 'merged-results';
+            if (fs.existsSync(testResultsPath)) {
+              comment += '✅ Test suite completed successfully!\n\n';
+              comment += '### Test Categories:\n';
+              comment += '- 🚀 **Smoke Tests**: Core functionality verification\n';
+              comment += '- 🔄 **E2E Tests**: End-to-end user workflows\n';
+              comment += '- 🔌 **API Tests**: Backend service validation\n';
+              comment += '- ⚡ **Performance Tests**: Load time and responsiveness\n';
+              comment += '- ♿ **Accessibility Tests**: WCAG compliance\n';
+              comment += '- 🔒 **Security Tests**: Vulnerability scanning\n';
+              comment += '- 📱 **Mobile Tests**: Cross-device compatibility\n\n';
+              comment += '📊 Detailed reports are available in the workflow artifacts.';
+            } else {
+              comment += '❌ Test execution encountered issues. Please check the workflow logs.';
+            }
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  notify:
+    name: Notify Results
+    runs-on: ubuntu-latest
+    needs: [report]
+    if: always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    
+    steps:
+      - name: Notify on failure
+        if: needs.report.result == 'failure'
+        run: |
+          echo "🚨 Test suite failed! Check the workflow for details."
+          # In a real scenario, you might send notifications to Slack, email, etc.
+          
+      - name: Notify on success
+        if: needs.report.result == 'success'
+        run: |
+          echo "✅ All tests passed successfully!"

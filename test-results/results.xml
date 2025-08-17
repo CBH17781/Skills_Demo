@@ -1,0 +1,12 @@
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="10.69110599999968">
+<testsuite name="webNavigation.spec.js" timestamp="2025-08-17T08:06:45.465Z" hostname="chromium" tests="4" failures="0" skipped="0" time="17.515" errors="0">
+<testcase name="LI.FI Website Navigation Tests @e2e › should navigate to homepage and verify core elements @smoke" classname="webNavigation.spec.js" time="2.877">
+</testcase>
+<testcase name="LI.FI Website Navigation Tests @e2e › should navigate through main menu items" classname="webNavigation.spec.js" time="8.45">
+</testcase>
+<testcase name="LI.FI Website Navigation Tests @e2e › should handle responsive navigation on mobile" classname="webNavigation.spec.js" time="3.057">
+</testcase>
+<testcase name="LI.FI Website Navigation Tests @e2e › should verify footer links and information" classname="webNavigation.spec.js" time="3.131">
+</testcase>
+</testsuite>
+</testsuites>
