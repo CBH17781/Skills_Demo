@@ -304,9 +304,9 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
-            
+
             let comment = '## 🧪 Test Results Summary\n\n';
-            
+
             // Check if test results exist and add summary
             const testResultsPath = 'merged-results';
             if (fs.existsSync(testResultsPath)) {
@@ -319,11 +319,25 @@ jobs:
               comment += '- ♿ **Accessibility Tests**: WCAG compliance\n';
               comment += '- 🔒 **Security Tests**: Vulnerability scanning\n';
               comment += '- 📱 **Mobile Tests**: Cross-device compatibility\n\n';
-              comment += '📊 Detailed reports are available in the workflow artifacts.';
+
+              // Fetch the latest artifact for the current workflow run
+              const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+              });
+
+              const reportArtifact = artifacts.artifacts.find(a => a.name.includes('playwright-report') || a.name.includes('merged-test-results'));
+              if (reportArtifact) {
+                const downloadUrl = reportArtifact.archive_download_url;
+                comment += `🔗 [Download Playwright HTML Report](${downloadUrl})\n\n`;
+              } else {
+                comment += '📊 Detailed reports are available in the workflow artifacts.\n';
+              }
             } else {
               comment += '❌ Test execution encountered issues. Please check the workflow logs.';
             }
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
